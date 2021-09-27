@@ -6,6 +6,7 @@ const cors = require("cors");
 app.use(cors());
 const MONGODB_URI = "mongodb://localhost:27017/Movie";
 const Movie = require("./models/Movie");
+app.use(express.json())
 
 mongoose
   .connect(MONGODB_URI, {
@@ -30,5 +31,13 @@ app.get("/api/moviedetail/:id", async (req, res) => {
   const movie = await Movie.findById(req.params.id);
   res.json(movie);
 });
+
+app.post("/AddMovie" ,async(req,res) =>{
+  // const AddMovie = await
+  Movie.create(req.body)
+})
+
+
+
 
 app.listen(5000);
